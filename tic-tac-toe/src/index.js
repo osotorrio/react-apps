@@ -46,7 +46,7 @@ class Game extends React.Component {
         this.state = {
             squares: Array(9).fill(null),
             xIsNext: true,
-            winner: null,
+            history: []
         };
     }
 
@@ -54,7 +54,13 @@ class Game extends React.Component {
         const squares = this.state.squares.slice();
         if (getWinner(this.state.squares)) return;
         squares[i] = this.state.xIsNext ? 'X' : 'O';
-        this.setState({ squares: squares, xIsNext: !this.state.xIsNext });
+        const history = this.state.history.slice();
+        history.push(this.state.squares);
+        this.setState({ squares: squares, xIsNext: !this.state.xIsNext, history: history });
+    }
+
+    goTo(index){
+        console.log(index);
     }
 
     render() {
@@ -66,13 +72,21 @@ class Game extends React.Component {
             status = 'Next: ' + (this.state.xIsNext ? 'X' : 'O');
         }
 
+        const moves = this.state.history.map((item, index) =>{
+            return(
+                <li key={index} onClick={() => this.goTo(index)}>{"Go to move " + (index + 1)}</li>
+            );
+        });
+
         return (
             <div className="game">
                 <div className="game-board">
-                    <h3>{status}</h3>
                     <Board squares={this.state.squares} onClickBoard={i => this.clickHandler(i)} />
                 </div>
-                <div className="game-info"></div>
+                <div className="game-info">
+                    <h3>{status}</h3>
+                    <ol>{moves}</ol>
+                </div>
             </div>
         );
     }
