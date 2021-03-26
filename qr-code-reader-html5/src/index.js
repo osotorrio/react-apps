@@ -5,9 +5,10 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+  <div>
+  <h1>Html5Qrcode React example!</h1>
+    <Html5QrcodeScannerPlugin />
+  </div>,
   document.getElementById('root')
 );
 
