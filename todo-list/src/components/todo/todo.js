@@ -1,6 +1,8 @@
+import './todo.css'
+
 function Todo(props){
     return (
-        <li>{props.text}</li>
+        <li className="todo">{props.text}</li>
     );
 }
 

@@ -1,5 +1,6 @@
 import React from 'react';
 import List from '../list/list';
+import './app.css'
 
 class App extends React.Component{
     constructor(props){
@@ -27,14 +28,13 @@ class App extends React.Component{
 
     render(){
         return(
-            <div>
-                <h1>TODO LIST APP</h1>
+            <React.Fragment>
+                <h1 className='title'>TODO APP</h1>
                 <form onSubmit={this.submitHandler}>
-                    <input onChange={this.changeHandler} value={this.state.text} />
-                    <button>Add</button>
+                    <input type="text" className="form-control" onChange={this.changeHandler} value={this.state.text} />
                 </form>
                 <List todos={this.state.todos} />
-            </div>
+            </React.Fragment>
         );
     }
 }

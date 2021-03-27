@@ -1,12 +1,19 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './components/app/App';
+import App from './components/app/app';
 import reportWebVitals from './reportWebVitals';
+import 'bootstrap/dist/css/bootstrap.min.css'
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <div className="container">
+      <div className="row">
+        <div className="col">
+          <App />
+        </div>
+      </div>
+    </div>
   </React.StrictMode>,
   document.getElementById('root')
 );
