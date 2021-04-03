@@ -1,9 +1,6 @@
 import React from 'react';
 
-
 class Todo extends React.Component {
-
-
     constructor(){
         super()
 
@@ -13,21 +10,22 @@ class Todo extends React.Component {
         }
     }
    
-
     handleSubmit = (event) => {
         event.preventDefault()
-        
         this.setState((previousState) => ({
             currentText: "",
             todos: previousState.todos.concat(previousState.currentText)
         }))
-        
-        console.log(this.state.currentText)
-
     }
 
     handleChange = (event) => {
         this.setState({currentText:event.target.value})
+    }
+
+    handleClick = (event) =>{
+        this.setState(previousState => ({
+            todos: previousState.todos.filter(item => { return item !== previousState.todos[event.target.id]})
+        }));
     }
 
     render(){
@@ -35,7 +33,7 @@ class Todo extends React.Component {
             <div>
                 TODO LIST
                 <form onSubmit={this.handleSubmit}>
-                    <input type="text" onChange={this.handleChange} required />
+                    <input type="text" value={this.state.currentText} onChange={this.handleChange} required />
                 </form>
                 <ul>
                     {
@@ -43,7 +41,7 @@ class Todo extends React.Component {
                         <li key={index}>
                             <input type="checkbox"/>
                             <span>{todo}</span>   
-                            <span>X</span>
+                            <span id={index} onClick={this.handleClick}>X</span>
                         </li> 
                     ))
                     }
@@ -52,6 +50,5 @@ class Todo extends React.Component {
         )
     }
 }
-
 
 export default Todo;
