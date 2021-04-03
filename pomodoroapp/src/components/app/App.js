@@ -7,7 +7,7 @@ function App() {
   }
 
   return (
-    <div className="container">
+    <div className="container-fuild">
       <div className="row">
         <div className="col-6" style={border}>
           <h1>This is our timer component</h1>
