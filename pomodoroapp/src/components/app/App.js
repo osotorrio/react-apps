@@ -1,4 +1,5 @@
 import Todo from '../todo/todo';
+import Timer from '../timer/timer'
 import './App.css';
 
 function App() {
@@ -10,7 +11,7 @@ function App() {
     <div className="container-fuild">
       <div className="row">
         <div className="col-6" style={border}>
-          <h1>This is our timer component</h1>
+          <Timer />
         </div>
         <div className="col-6" style={border}>
           <Todo />
