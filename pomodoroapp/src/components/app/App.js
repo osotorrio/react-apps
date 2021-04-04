@@ -17,7 +17,9 @@ function App() {
         </div>
       </div>
       <div className="row" style={border}>
-        <h1>This is our history component</h1>
+        <div className="col-12">
+          <h1>This is our history component</h1>
+        </div>
       </div>
     </div>
   );
