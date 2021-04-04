@@ -18,5 +18,5 @@ const pomodoro = (callback) => {
     }, 1000);
 }
 
-export default {pomodoro};
+export {pomodoro};
 

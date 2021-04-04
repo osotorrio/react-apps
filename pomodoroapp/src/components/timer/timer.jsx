@@ -1,5 +1,5 @@
 import React from 'react';
-import pomodoro from '../../modules/countdown'
+import {pomodoro} from '../../modules/countdown'
 
 class Timer extends React.Component {
     constructor() {
@@ -10,15 +10,13 @@ class Timer extends React.Component {
         this.handlePomodoro = this.handlePomodoro.bind(this);
     }
 
-    callback = value => {
-        console.log(value);
-        // this.setState({
-        //     currentTimer: value
-        // })
-    }
 
     handlePomodoro(){
-        pomodoro(this.callback);
+        pomodoro(value => {
+            this.setState({
+                currentTimer: value
+            })
+        });
     }
 
     render(){
