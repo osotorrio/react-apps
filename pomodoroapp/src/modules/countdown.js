@@ -2,7 +2,7 @@
 let id;
 
 const pomodoro = (callback) => {
-    createTimer(5, callback)
+    createTimer(25, callback)
 }
 
 const shortBreak = (callback) => {
@@ -35,8 +35,8 @@ const createTimer = (minutes, callback) => {
 }
 
 function formatTime(minutes, seconds){
-    if (minutes< 10) minutes = 0 + minutes;
-    if (seconds< 10) seconds = 0 + seconds;
+    if (minutes < 10) minutes = `0${minutes}`;
+    if (seconds < 10) seconds = `0${seconds}`;
     return `${minutes}:${seconds}`
 }
 
