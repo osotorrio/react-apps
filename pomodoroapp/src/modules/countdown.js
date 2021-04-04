@@ -29,7 +29,7 @@ const createTimer = (minutes, callback) => {
 
         if (distance < 0) {
             clearInterval(id);
-            callback(null);
+            callback("00:00");
         }
     }, 1000);
 }
