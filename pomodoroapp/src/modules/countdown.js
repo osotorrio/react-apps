@@ -2,7 +2,7 @@
 let id;
 
 const pomodoro = (callback) => {
-    createTimer(25, callback)
+    createTimer(5, callback)
 }
 
 const shortBreak = (callback) => {
@@ -25,13 +25,19 @@ const createTimer = (minutes, callback) => {
         const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
         const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-        callback(`${minutes}:${seconds}`);
+        callback(formatTime(minutes, seconds));
 
         if (distance < 0) {
             clearInterval(id);
             callback(null);
         }
     }, 1000);
+}
+
+function formatTime(minutes, seconds){
+    if (minutes< 10) minutes = 0 + minutes;
+    if (seconds< 10) seconds = 0 + seconds;
+    return `${minutes}:${seconds}`
 }
 
 export {pomodoro, shortBreak, longBreak};
