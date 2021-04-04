@@ -1,8 +1,24 @@
 
-const pomodoro = (callback) => {
-    const countDownDate = new Date(new Date().getTime() + 25*60000).getTime();
+let id;
 
-    const id = setInterval(function() {
+const pomodoro = (callback) => {
+    createTimer(25, callback)
+}
+
+const shortBreak = (callback) => {
+    createTimer(5, callback)
+}
+
+const longBreak = (callback) => {
+    createTimer(10, callback)
+}
+
+const createTimer = (minutes, callback) => {
+    const countDownDate = new Date(new Date().getTime() + minutes*60000).getTime();
+
+    if (id) clearInterval(id);
+    
+    id = setInterval(function() {
         const now = new Date().getTime();
         const distance = countDownDate - now;
 
@@ -18,5 +34,5 @@ const pomodoro = (callback) => {
     }, 1000);
 }
 
-export {pomodoro};
+export {pomodoro, shortBreak, longBreak};
 

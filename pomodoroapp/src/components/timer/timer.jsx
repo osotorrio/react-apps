@@ -1,5 +1,5 @@
 import React from 'react';
-import {pomodoro} from '../../modules/countdown'
+import {pomodoro, shortBreak, longBreak} from '../../modules/countdown'
 
 class Timer extends React.Component {
     constructor() {
@@ -7,12 +7,27 @@ class Timer extends React.Component {
         this.state = {
             currentTimer: "25:00"
         }
-        this.handlePomodoro = this.handlePomodoro.bind(this);
     }
 
 
-    handlePomodoro(){
+    handlePomodoro = () => {
         pomodoro(value => {
+            this.setState({
+                currentTimer: value
+            })
+        });
+    }
+
+    handleShortBreak = () => {
+        shortBreak(value => {
+            this.setState({
+                currentTimer: value
+            })
+        });
+    }
+
+    handleLongBreak = () => {
+        longBreak(value => {
             this.setState({
                 currentTimer: value
             })
@@ -24,8 +39,8 @@ class Timer extends React.Component {
             <React.Fragment>
                 <div>
                     <button onClick={this.handlePomodoro}>Pomodoro</button>
-                    <button>Short Break</button>
-                    <button>Long Break</button>
+                    <button onClick={this.handleShortBreak}>Short Break</button>
+                    <button onClick={this.handleLongBreak}>Long Break</button>
                 </div>
                 <div>
                     <h3>{this.state.currentTimer}</h3>
