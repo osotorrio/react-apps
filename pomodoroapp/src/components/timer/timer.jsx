@@ -1,4 +1,5 @@
 import React from 'react';
+
 import { pomodoro, shortBreak, longBreak } from '../../modules/countdown';
 
 class Timer extends React.Component {

@@ -1,39 +1,51 @@
 let id;
+let currentTimerSeconds = 1500; // 25 minutes
 
 const pomodoro = (callback) => {
-  createTimer(25, callback);
+  currentTimerSeconds = 1500;
+  createTimer(callback);
 };
 
 const shortBreak = (callback) => {
-  createTimer(5, callback);
+  currentTimerSeconds = 300;
+  createTimer(callback);
 };
 
 const longBreak = (callback) => {
-  createTimer(10, callback);
+  currentTimerSeconds = 600;
+  createTimer(callback);
 };
 
-const createTimer = (minutes, callback) => {
-  const countDownDate = new Date(
-    new Date().getTime() + minutes * 60000
-  ).getTime();
+function createTimer(callback) {
+  // const countDownDate = new Date(
+  //   new Date().getTime() + minutes * 60000
+  // ).getTime();
 
   if (id) clearInterval(id);
 
   id = setInterval(function () {
-    const now = new Date().getTime();
-    const distance = countDownDate - now;
+    // const now = new Date().getTime();
+    // const distance = countDownDate - now;
 
-    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+    // const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    // const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-    callback(formatTime(minutes, seconds));
+    const time = convertSecsToMinsSecs(currentTimerSeconds);
+    currentTimerSeconds--;
+    callback(formatTime(time.minutes, time.seconds));
 
-    if (distance < 0) {
+    if (currentTimerSeconds < 0) {
       clearInterval(id);
       callback('00:00');
     }
   }, 1000);
-};
+}
+
+function convertSecsToMinsSecs(secs) {
+  const minutes = Math.floor(secs / 60);
+  const seconds = secs - minutes * 60;
+  return { minutes: minutes, seconds: seconds };
+}
 
 function formatTime(minutes, seconds) {
   if (minutes < 10) minutes = `0${minutes}`;
