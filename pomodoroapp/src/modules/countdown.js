@@ -1,18 +1,22 @@
 let id;
-let currentTimerSeconds = 1500; // 25 minutes
+let currentTimerSeconds; // 25 minutes
+let currentPomodoro;
 
 const pomodoro = (callback) => {
   currentTimerSeconds = 1500;
+  currentPomodoro = currentTimerSeconds;
   createTimer(callback);
 };
 
 const shortBreak = (callback) => {
   currentTimerSeconds = 300;
+  currentPomodoro = currentTimerSeconds;
   createTimer(callback);
 };
 
 const longBreak = (callback) => {
   currentTimerSeconds = 600;
+  currentPomodoro = currentTimerSeconds;
   createTimer(callback);
 };
 
@@ -24,8 +28,15 @@ const stopTimer = () => {
   if (id) clearInterval(id);
 };
 
+const resetTimer = (callback) => {
+  stopTimer();
+  currentTimerSeconds = currentPomodoro;
+  const time = convertSecsToMinsSecs(currentTimerSeconds);
+  callback(formatTime(time.minutes, time.seconds));
+};
+
 function createTimer(callback) {
-  if (id) clearInterval(id);
+  stopTimer();
 
   id = setInterval(function () {
     const time = convertSecsToMinsSecs(currentTimerSeconds);
@@ -51,4 +62,4 @@ function formatTime(minutes, seconds) {
   return `${minutes}:${seconds}`;
 }
 
-export { pomodoro, shortBreak, longBreak, startTimer, stopTimer };
+export { pomodoro, shortBreak, longBreak, startTimer, stopTimer, resetTimer };

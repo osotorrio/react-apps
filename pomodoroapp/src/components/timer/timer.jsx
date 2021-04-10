@@ -6,6 +6,7 @@ import {
   longBreak,
   startTimer,
   stopTimer,
+  resetTimer,
 } from '../../modules/countdown';
 
 class Timer extends React.Component {
@@ -52,6 +53,14 @@ class Timer extends React.Component {
     stopTimer();
   };
 
+  handleResetTimer = () => {
+    resetTimer((value) => {
+      this.setState({
+        currentTimer: value,
+      });
+    });
+  };
+
   render() {
     return (
       <React.Fragment>
@@ -66,7 +75,7 @@ class Timer extends React.Component {
         <div>
           <button onClick={this.handleStartTimer}>Start</button>
           <button onClick={this.handleStopTimer}>Stop</button>
-          <button>Reset</button>
+          <button onClick={this.handleResetTimer}>Reset</button>
         </div>
       </React.Fragment>
     );
