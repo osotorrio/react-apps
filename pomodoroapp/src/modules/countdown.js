@@ -16,20 +16,18 @@ const longBreak = (callback) => {
   createTimer(callback);
 };
 
-function createTimer(callback) {
-  // const countDownDate = new Date(
-  //   new Date().getTime() + minutes * 60000
-  // ).getTime();
+const startTimer = (callback) => {
+  createTimer(callback);
+};
 
+const stopTimer = () => {
+  if (id) clearInterval(id);
+};
+
+function createTimer(callback) {
   if (id) clearInterval(id);
 
   id = setInterval(function () {
-    // const now = new Date().getTime();
-    // const distance = countDownDate - now;
-
-    // const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-    // const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
     const time = convertSecsToMinsSecs(currentTimerSeconds);
     currentTimerSeconds--;
     callback(formatTime(time.minutes, time.seconds));
@@ -53,4 +51,4 @@ function formatTime(minutes, seconds) {
   return `${minutes}:${seconds}`;
 }
 
-export { pomodoro, shortBreak, longBreak };
+export { pomodoro, shortBreak, longBreak, startTimer, stopTimer };

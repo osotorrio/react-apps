@@ -1,6 +1,12 @@
 import React from 'react';
 
-import { pomodoro, shortBreak, longBreak } from '../../modules/countdown';
+import {
+  pomodoro,
+  shortBreak,
+  longBreak,
+  startTimer,
+  stopTimer,
+} from '../../modules/countdown';
 
 class Timer extends React.Component {
   constructor() {
@@ -34,6 +40,18 @@ class Timer extends React.Component {
     });
   };
 
+  handleStartTimer = () => {
+    startTimer((value) => {
+      this.setState({
+        currentTimer: value,
+      });
+    });
+  };
+
+  handleStopTimer = () => {
+    stopTimer();
+  };
+
   render() {
     return (
       <React.Fragment>
@@ -46,8 +64,8 @@ class Timer extends React.Component {
           <h3>{this.state.currentTimer}</h3>
         </div>
         <div>
-          <button>Start</button>
-          <button>Stop</button>
+          <button onClick={this.handleStartTimer}>Start</button>
+          <button onClick={this.handleStopTimer}>Stop</button>
           <button>Reset</button>
         </div>
       </React.Fragment>
