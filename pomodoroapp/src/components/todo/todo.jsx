@@ -10,19 +10,37 @@ class Todo extends React.Component {
     };
   }
 
-  handleSubmit = (event) => {
+  handleAddItem = (event) => {
     event.preventDefault();
     this.setState((previousState) => ({
       currentText: '',
-      todos: previousState.todos.concat(previousState.currentText),
+      todos: previousState.todos.concat({
+        text: previousState.currentText,
+        isDone: false,
+      }),
     }));
   };
 
-  handleChange = (event) => {
+  handleUpdateText = (event) => {
     this.setState({ currentText: event.target.value });
   };
 
-  handleClick = (event) => {
+  handleItemDone = (event) => {
+    let todos = this.state.todos;
+
+    todos.map((todo) => {
+      if (todo.text === event.target.name) {
+        todo.isDone = !todo.isDone;
+        console.log(todo);
+      }
+    });
+
+    this.setState({
+      todos: todos,
+    });
+  };
+
+  handleRemoveItem = (event) => {
     this.setState((previousState) => ({
       todos: previousState.todos.filter((item, index) => {
         return index.toString() !== event.target.id;
@@ -34,20 +52,24 @@ class Todo extends React.Component {
     return (
       <div>
         TODO LIST
-        <form onSubmit={this.handleSubmit}>
+        <form onSubmit={this.handleAddItem}>
           <input
             type='text'
             value={this.state.currentText}
-            onChange={this.handleChange}
+            onChange={this.handleUpdateText}
             required
           />
         </form>
         <ul>
           {this.state.todos.map((todo, index) => (
             <li key={index}>
-              <input type='checkbox' />
-              <span>{todo}</span>
-              <button id={index} onClick={this.handleClick}>
+              <input
+                name={todo.text}
+                type='checkbox'
+                onChange={this.handleItemDone}
+              />
+              <span>{todo.text}</span>
+              <button id={index} onClick={this.handleRemoveItem}>
                 X
               </button>
             </li>
