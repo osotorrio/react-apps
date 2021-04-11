@@ -54,7 +54,7 @@ class Todo extends React.Component {
         TODO LIST
         <form onSubmit={this.handleAddItem}>
           <input
-            type='text'
+            type="text"
             value={this.state.currentText}
             onChange={this.handleUpdateText}
             required
@@ -65,7 +65,7 @@ class Todo extends React.Component {
             <li key={index}>
               <input
                 name={todo.text}
-                type='checkbox'
+                type="checkbox"
                 onChange={this.handleItemDone}
               />
               <span>{todo.text}</span>
