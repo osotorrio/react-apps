@@ -1,81 +1,82 @@
 import React from 'react';
 
 class Todo extends React.Component {
-  constructor() {
-    super();
+	constructor() {
+		super();
 
-    this.state = {
-      currentText: '',
-      todos: [],
-    };
-  }
+		this.state = {
+			currentText: '',
+			todos: [],
+		};
 
-  handleAddItem(event) {
-    event.preventDefault();
-    this.setState((previousState) => ({
-      currentText: '',
-      todos: previousState.todos.concat({
-        text: previousState.currentText,
-        isDone: false,
-      }),
-    }));
-  }
+		this.handleAddItem = this.handleAddItem.bind(this);
+		this.handleUpdateText = this.handleUpdateText.bind(this);
+		this.handleItemDone = this.handleItemDone.bind(this);
+		this.handleRemoveItem = this.handleRemoveItem.bind(this);
+	}
 
-  handleUpdateText(event) {
-    this.setState({ currentText: event.target.value });
-  }
+	handleAddItem(event) {
+		event.preventDefault();
+		this.setState((previousState) => ({
+			currentText: '',
+			todos: previousState.todos.concat({
+				text: previousState.currentText,
+				isDone: false,
+			}),
+		}));
+	}
 
-  handleItemDone(event) {
-    let todos = this.state.todos;
+	handleUpdateText(event) {
+		this.setState({ currentText: event.target.value });
+	}
 
-    todos.map((todo) => {
-      if (todo.text === event.target.name) {
-        todo.isDone = !todo.isDone;
-        console.log(todo);
-      }
-    });
+	handleItemDone(event) {
+		let todos = this.state.todos;
 
-    this.setState({ todos });
-  }
+		todos.map((todo) => {
+			if (todo.text === event.target.name) {
+				todo.isDone = !todo.isDone;
+				console.log(todo);
+			}
+		});
 
-  handleRemoveItem(event) {
-    this.setState((previousState) => ({
-      todos: previousState.todos.filter((item, index) => {
-        return index.toString() !== event.target.id;
-      }),
-    }));
-  }
+		this.setState({ todos });
+	}
 
-  render() {
-    return (
-      <div>
-        TODO LIST
-        <form onSubmit={this.handleAddItem}>
-          <input
-            type="text"
-            value={this.state.currentText}
-            onChange={this.handleUpdateText}
-            required
-          />
-        </form>
-        <ul>
-          {this.state.todos.map((todo, index) => (
-            <li key={index}>
-              <input
-                name={todo.text}
-                type="checkbox"
-                onChange={this.handleItemDone}
-              />
-              <span>{todo.text}</span>
-              <button id={index} onClick={this.handleRemoveItem}>
-                X
-              </button>
-            </li>
-          ))}
-        </ul>
-      </div>
-    );
-  }
+	handleRemoveItem(event) {
+		this.setState((previousState) => ({
+			todos: previousState.todos.filter((item, index) => {
+				return index.toString() !== event.target.id;
+			}),
+		}));
+	}
+
+	render() {
+		return (
+			<div>
+				TODO LIST
+				<form onSubmit={this.handleAddItem}>
+					<input
+						type="text"
+						value={this.state.currentText}
+						onChange={this.handleUpdateText}
+						required
+					/>
+				</form>
+				<ul>
+					{this.state.todos.map((todo, index) => (
+						<li key={index}>
+							<input name={todo.text} type="checkbox" onChange={this.handleItemDone} />
+							<span>{todo.text}</span>
+							<button id={index} onClick={this.handleRemoveItem}>
+								X
+							</button>
+						</li>
+					))}
+				</ul>
+			</div>
+		);
+	}
 }
 
 export default Todo;

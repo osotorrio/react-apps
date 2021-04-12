@@ -1,32 +1,32 @@
 {
-  "settings": {
-    "react": {
-      "version": "detect"
-    }
-  },
-  "env": {
-    "browser": true,
-    "es6": true,
-    "jest/globals": true
-  },
-  "parserOptions": {
-    "ecmaFeatures": {
-      "jsx": true
-    },
-    "ecmaVersion": 2021,
-    "sourceType": "module"
-  },
-  "plugins": ["react", "jest"],
-  "extends": [
-    "eslint:recommended",
-    "plugin:react/recommended",
-    "plugin:jest/recommended",
-    "prettier"
-  ],
-  "rules": {
-    "no-console": "warn",
-    "no-unused-vars": "warn",
-    "object-shorthand": "warn",
-    "class-methods-use-this": "warn"
-  }
+	"settings": {
+		"react": {
+			"version": "detect"
+		}
+	},
+	"env": {
+		"browser": true,
+		"es6": true,
+		"jest/globals": true
+	},
+	"parserOptions": {
+		"ecmaFeatures": {
+			"jsx": true
+		},
+		"ecmaVersion": 2021,
+		"sourceType": "module"
+	},
+	"plugins": ["react", "jest"],
+	"extends": [
+		"eslint:recommended",
+		"plugin:react/recommended",
+		"plugin:jest/recommended",
+		"prettier"
+	],
+	"rules": {
+		"no-console": "warn",
+		"no-unused-vars": "warn",
+		"object-shorthand": "warn",
+		"class-methods-use-this": "warn"
+	}
 }
