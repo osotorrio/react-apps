@@ -53,7 +53,7 @@ function createTimer(callback) {
 function convertSecsToMinsSecs(secs) {
   const minutes = Math.floor(secs / 60);
   const seconds = secs - minutes * 60;
-  return { minutes: minutes, seconds: seconds };
+  return { minutes, seconds };
 }
 
 function formatTime(minutes, seconds) {

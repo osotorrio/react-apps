@@ -10,7 +10,7 @@ class Todo extends React.Component {
     };
   }
 
-  handleAddItem = (event) => {
+  handleAddItem(event) {
     event.preventDefault();
     this.setState((previousState) => ({
       currentText: '',
@@ -19,13 +19,13 @@ class Todo extends React.Component {
         isDone: false,
       }),
     }));
-  };
+  }
 
-  handleUpdateText = (event) => {
+  handleUpdateText(event) {
     this.setState({ currentText: event.target.value });
-  };
+  }
 
-  handleItemDone = (event) => {
+  handleItemDone(event) {
     let todos = this.state.todos;
 
     todos.map((todo) => {
@@ -35,18 +35,16 @@ class Todo extends React.Component {
       }
     });
 
-    this.setState({
-      todos: todos,
-    });
-  };
+    this.setState({ todos });
+  }
 
-  handleRemoveItem = (event) => {
+  handleRemoveItem(event) {
     this.setState((previousState) => ({
       todos: previousState.todos.filter((item, index) => {
         return index.toString() !== event.target.id;
       }),
     }));
-  };
+  }
 
   render() {
     return (

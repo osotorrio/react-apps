@@ -17,49 +17,49 @@ class Timer extends React.Component {
     };
   }
 
-  handlePomodoro = () => {
+  handlePomodoro() {
     pomodoro((value) => {
       this.setState({
         currentTimer: value,
       });
     });
-  };
+  }
 
-  handleShortBreak = () => {
+  handleShortBreak() {
     shortBreak((value) => {
       this.setState({
         currentTimer: value,
       });
     });
-  };
+  }
 
-  handleLongBreak = () => {
+  handleLongBreak() {
     longBreak((value) => {
       this.setState({
         currentTimer: value,
       });
     });
-  };
+  }
 
-  handleStartTimer = () => {
+  handleStartTimer() {
     startTimer((value) => {
       this.setState({
         currentTimer: value,
       });
     });
-  };
+  }
 
-  handleStopTimer = () => {
+  handleStopTimer() {
     stopTimer();
-  };
+  }
 
-  handleResetTimer = () => {
+  handleResetTimer() {
     resetTimer((value) => {
       this.setState({
         currentTimer: value,
       });
     });
-  };
+  }
 
   render() {
     return (
